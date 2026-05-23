@@ -33,7 +33,7 @@ Projedeki veriler, gerçek dünya kayıt sürelerini taklit etmek üzere senteti
 İki grup arasındaki bu 4.61 saniyelik farkın **şans eseri** mi oluştuğunu yoksa **tasarımın gerçek etkisinden** mi kaynaklandığını anlamak için **Permütasyon Testi** (Rastgeleleştirme Testi) uygulanmıştır.
 
 > [!NOTE]
-> ### Permütasyon Testinin Mantığı ("Mala Anlatır Gibi")
+> ### Permütasyon Testinin Mantığı
 > 1. A grubundan 50 ve B grubundan 50 olmak üzere tüm 100 kişinin kayıt süresini tek bir torbaya atıp iyice karıştırıyoruz.
 > 2. Bu torbadan rastgele 50'şer kişilik iki yeni yapay grup çekiyoruz ve aralarındaki ortalama farkı hesaplıyoruz.
 > 3. Bu karıştırma ve yeniden grup oluşturma işlemini tam **10.000 kez** tekrarlıyoruz (Simülasyon).
