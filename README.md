@@ -46,7 +46,27 @@ $$p\text{-değeri} = \frac{\sum_{i=1}^{N} I(|\text{diff\_perm}_i| \ge |\text{dif
 
 ---
 
-## ⚠️ 4. p-hacking (Veri Hırsızlığı / Manipülasyonu) Tuzağı
+
+## 📐 4. İstatistiksel Yöntemler: Güven Aralığı Analizi
+
+Bu analiz için yazılan [ab_analiz.py](ab_analiz.py) dosyası, kayıt süreleri verisini okuyup A ve B grupları için ayrı ayrı güven aralıklarını hesaplar. Ardından normal yaklaşım ile bootstrap yüzdelik yönteminin sonuçlarını aynı tabloda karşılaştırır ve çıktıyı Türkçe olarak yorumlar.
+
+> [!NOTE]
+> ### Normal Yaklaşım Güven Aralığı
+> Normal yaklaşımda, her grubun örneklem ortalaması ve örneklem standart sapması kullanılarak ortalamanın belirsizliği ölçülür. Güven aralığı, "ortalama ± kritik t değeri × standart hata" formülüyle hesaplanır ve burada %95 güven düzeyi kullanılır.
+
+### Matematiksel İfade
+$$\text{Güven Aralığı} = \bar{x} \pm t_{0.975,\,n-1} \times \frac{s}{\sqrt{n}}$$
+
+> [!NOTE]
+> ### Bootstrap Yüzdelik Yöntemi
+> Bootstrap yönteminde, aynı gruptaki veriler yerine koyarak 1000 kez yeniden örneklenir ve her örneklemin ortalaması alınır. Sonra bu bootstrap ortalamalarının dağılımındaki %2.5 ve %97.5 yüzdelikleri güven aralığının alt ve üst sınırları olarak seçilir.
+
+`python ab_analiz.py` komutuyla çalıştırıldığında, her iki grup için normal yaklaşım ve bootstrap yüzdelik yöntemiyle bulunan güven aralıkları sade bir karşılaştırma tablosu olarak ekrana yazdırılır. Sonunda da bu iki yöntemin sonuçlarının birbirine çok yakın olduğu ve B grubunun daha düşük kayıt süreleri sunduğu Türkçe olarak yorumlanır.
+
+---
+
+## ⚠️ 5. p-hacking (Veri Hırsızlığı / Manipülasyonu) Tuzağı
 
 A/B testlerinde yapılan en büyük hatalardan biri "p-hacking" yani anlamlı bir sonuç bulana kadar veriyi ve metrikleri eğip bükmektir.
 
@@ -58,16 +78,16 @@ A/B testlerinde yapılan en büyük hatalardan biri "p-hacking" yani anlamlı bi
 
 ---
 
-## 🛠️ 5. Nasıl Çalıştırılır?
+## 🛠️ 6. Nasıl Çalıştırılır?
 
-Analiz kodunu çalıştırmak ve yukarıdaki özet tabloyu ile p-değerini kendi gözlerinizle görmek için şu adımları izleyebilirsiniz:
+Analiz kodunu çalıştırmak ve yukarıdaki güven aralığı sonuçlarını kendi gözlerinizle görmek için şu adımları izleyebilirsiniz:
 
 1. Gerekli kütüphaneleri yükleyin (henüz yüklü değilse):
    ```bash
-   pip install pandas numpy
+   pip install pandas numpy scipy
    ```
 2. Analiz kodunu çalıştırın:
    ```bash
    python ab_analiz.py
    ```
-   *Kod, tekrarlanabilirlik için kilitlenmiş bir seed (`np.random.seed(42)`) kullandığından, her çalıştırdığınızda tam olarak aynı istatistikleri ve $p = 0.0055$ değerini verecektir.*
+   *Kod, tekrarlanabilirlik için kilitlenmiş bir seed (`np.random.seed(42)`) kullandığından, her çalıştırdığınızda aynı normal yaklaşım ve bootstrap güven aralıklarını, ayrıca iki yöntemi karşılaştıran sade tabloyu ekrana yazdıracaktır.*
